@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Signup"
+    >
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="386dp"
+        android:layout_height="202dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/logoemsi" />
+
+    <!-- Texte de Sign Up -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="SIGN UP"
+        android:textColor="@color/green"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Champ Full Name -->
+    <EditText
+        android:id="@+id/et_fullname"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/input_background"
+        android:hint="Enter Full Name"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+
+    <!-- Champ Email -->
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_background"
+        android:hint="Enter Email or Username"
+        android:inputType="textEmailAddress"
+        android:padding="10dp" />
+
+    <!-- Champ Mot de passe -->
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/input_background"
+        android:hint="Enter your Password"
+        android:inputType="textPassword"
+        android:padding="10dp" />
+
+    <!-- Champ Confirmer le mot de passe -->
+    <EditText
+        android:id="@+id/et_confirm_password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/input_background"
+        android:hint="Confirm your Password"
+        android:inputType="textPassword"
+        android:padding="10dp" />
+
+    <!-- Bouton d'inscription -->
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="Sign Up"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/green"
+        android:layout_marginTop="20dp" />
+
+    <!-- Redirection vers Login -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Login"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:onClick="redirectToLogin"
+    />
+
+
+</LinearLayout>
