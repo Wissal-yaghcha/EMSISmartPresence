@@ -1,6 +1,6 @@
 package com.example.emsismartpresence;
 
-import android.content.Intent; // Import nécessaire pour l'intent
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,8 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Login extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private View btnLogin;
-    private final String validEmail = "user@example.com";
-    private final String validPassword = "123456";
     private FirebaseAuth mAuth;
 
     @Override
@@ -27,19 +25,27 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+
         mAuth = FirebaseAuth.getInstance();
 
+        // Initialisation des vues
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
 
-        // Utilisation correcte de btnLogin sans redéclaration
+        // Connexion
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                authenticateUser();
+            }
+        });
 
-                Intent i = new Intent(Login.this, Signup.class);
-                startActivity(i);
+        // Redirection vers Signup
+        findViewById(R.id.goToSignup).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectToSignUp(v);
             }
         });
     }
@@ -47,33 +53,30 @@ public class Login extends AppCompatActivity {
     private void authenticateUser() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(Login.this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Success authentification", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Authentification réussie", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(Login.this, Home.class);
                             startActivity(i);
+                            finish();
                         } else {
-                            Toast.makeText(Login.this, "Authentification failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Authentification échouée", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-            }
-        });
+    }
+
+    public void redirectToSignUp(View view) {
+        Intent intent = new Intent(Login.this, Signup.class);
+        startActivity(intent);
     }
 }
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.google.gms.google-services") // Firebase Plugin
+    id("com.google.gms.google-services")
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) // Firebase Plugin
 }
 
 android {
@@ -33,7 +34,6 @@ android {
 }
 
 dependencies {
-    // General dependencies
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -47,10 +47,10 @@ dependencies {
     implementation(platform(libs.firebase.bom)) // Firebase BOM (Bill of Materials)
 
     // Firebase Authentication
-   implementation(libs.firebase.auth)
+    implementation(libs.firebase.auth)
 
     // Firebase Firestore (optional, if you're using it)
     implementation(libs.firebase.firestore)
+    implementation("com.google.android.gms:play-services-maps:19.2.0")
     // Add other Firebase products if needed
 }
-

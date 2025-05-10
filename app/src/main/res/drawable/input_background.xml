@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="#EEEEEE"/>
+<shape xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="ExtraText">
+    <!-- Dégradé horizontal entre deux couleurs -->
+    <gradient
+        android:type="linear"
+        android:angle="90"
+        android:startColor="@color/colorStart" /> <!-- Référence à la couleur de départ -->
+    android:endColor="@color/colorEnd"    <!-- Référence à la couleur de fin --><![CDATA[
+    android:useLevel="false"/>
+
+    ]]><!-- Coins arrondis -->
     <corners android:radius="30dp"/>
-    <padding android:left="30dp" android:right="10dp" android:top="10dp"
-        android:bottom="10dp"/>
+
+    <!-- Bordure -->
+    <stroke android:color="@color/colorBorder" android:width="2dp"/>
+
+    <!-- Remplissage de l'arrière-plan -->
+    <solid android:color="@color/white"/>
 </shape>

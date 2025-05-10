@@ -2,27 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Login">
 
-    <!-- Logo -->
+    <!-- Logo EMSI -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="386dp"
         android:layout_height="202dp"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/logoemsi" />
 
-    <!-- Texte de Login -->
+    <!-- Titre LOGIN -->
     <TextView
+        android:id="@+id/login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="LOGIN"
         android:textColor="@color/green"
         android:textSize="24sp"
@@ -36,44 +37,48 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:background="@drawable/input_background"
-        android:hint="Enter Email or Username"
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColorHint="#999999"
+        android:textColor="#000000" />
 
-    <!-- Champ Mot de passe -->
+    <!-- Champ Password -->
     <EditText
         android:id="@+id/et_password"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:background="@drawable/input_background"
-        android:hint="Enter your Password"
+        android:hint="Password"
         android:inputType="textPassword"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColorHint="#999999"
+        android:textColor="#000000" />
 
-    <!-- Bouton de connexion -->
+    <!-- Bouton Login -->
     <Button
         android:id="@+id/btn_login"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Login"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/green"
-        android:layout_marginTop="20dp" />
-
-    <!-- Champ Register -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't have an account? Sign up"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:onClick="redirectToSignUp" />  <!-- Le onClick ici -->
+        android:backgroundTint="@color/green"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
+    <!-- Redirection vers Sign up -->
+    <TextView
+        android:id="@+id/goToSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:padding="35dp"
+        android:text="Don't have an account? Sign up"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </LinearLayout>

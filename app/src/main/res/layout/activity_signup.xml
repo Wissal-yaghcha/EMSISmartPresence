@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Signup"
-    >
+    tools:context=".Signup">
 
     <!-- Logo -->
     <ImageView
@@ -58,8 +57,8 @@
         android:id="@+id/et_password"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:background="@drawable/input_background"
         android:hint="Enter your Password"
         android:inputType="textPassword"
@@ -70,8 +69,8 @@
         android:id="@+id/et_confirm_password"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:background="@drawable/input_background"
         android:hint="Confirm your Password"
         android:inputType="textPassword"
@@ -82,25 +81,25 @@
         android:id="@+id/btn_signup"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Sign Up"
         android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/green"
-        android:layout_marginTop="20dp" />
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <!-- Redirection vers Login -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account? Login"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:onClick="redirectToLogin"
-    />
+        android:padding="35dp"
+        android:text="Already have an account? Login"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
 </LinearLayout>
