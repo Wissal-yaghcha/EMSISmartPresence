@@ -2,8 +2,8 @@ package com.example.emsismartpresence;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Home extends AppCompatActivity {
@@ -18,14 +18,23 @@ public class Home extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        ImageView mapImage = findViewById(R.id.google_maps); // ID correct de l'image
-        mapImage.setOnClickListener(v -> {
-            Intent intent = new Intent(Home.this, MapsActivity.class);
-            startActivity(intent);
-        });
 
+        ImageView mapImage = findViewById(R.id.ic_maps);
+        mapImage.setOnClickListener(v -> startActivity(new Intent(Home.this, MapsActivity.class)));
 
+        ImageView assistantImage = findViewById(R.id.ic_assistant);
+        assistantImage.setOnClickListener(v -> startActivity(new Intent(Home.this, Assistant_virtuel.class)));
 
-        // Tu peux ajouter des setOnClickListener ici pour chaque image si besoin
+        ImageView absencesImage = findViewById(R.id.ic_absences);
+        absencesImage.setOnClickListener(v -> startActivity(new Intent(Home.this, AbsencesActivity.class)));
+
+        ImageView docsImage = findViewById(R.id.ic_documents);
+        docsImage.setOnClickListener(v -> startActivity(new Intent(Home.this, DocumentsActivity.class)));
+
+        ImageView emploiBtn = findViewById(R.id.ic_emploi);
+        emploiBtn.setOnClickListener(v -> startActivity(new Intent(Home.this, EmploiDuTempsActivity.class)));
+
+        ImageView rattrapageBtn = findViewById(R.id.ic_rattrapage);
+        rattrapageBtn.setOnClickListener(v -> startActivity(new Intent(Home.this, RattrapagesActivity.class)));
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="12dp">
+
+        <TextView
+            android:id="@+id/text_jour_ou_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jour : Lundi"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_heure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Heure : 08:00 - 10:00" />
+
+        <TextView
+            android:id="@+id/text_matiere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matière : Java" />
+
+        <TextView
+            android:id="@+id/text_groupe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Groupe : G1" />
+
+        <TextView
+            android:id="@+id/text_salle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salle : A3" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

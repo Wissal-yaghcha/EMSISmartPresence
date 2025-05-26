@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="4dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_groupe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Groupe: ..."
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_matiere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matière: ..." />
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: ..." />
+
+        <TextView
+            android:id="@+id/text_absents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Absents: ..." />
+
+        <TextView
+            android:id="@+id/text_remarque"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remarque: ..."
+            android:textStyle="italic" />
+
+        <!-- Liste stylisée des noms -->
+        <TextView
+            android:id="@+id/text_absents_names"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:background="#EFEFEF"
+            android:padding="8dp"
+            android:textColor="#444"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@android:color/darker_gray" />
+
+        <!-- Boutons Modifier et Supprimer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btn_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modifier"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Supprimer"
+                android:textAllCaps="false"
+                android:layout_marginStart="8dp"
+                android:textColor="@android:color/holo_red_dark" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

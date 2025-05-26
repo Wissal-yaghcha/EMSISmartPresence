@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,28 +17,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EmsiSmartPresence"
         tools:targetApi="31">
-        <activity android:name=".MapsActivity" android:exported="false" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA-l825z_McWfj0Pb_Jf6pmej1QOJ5sa3Q" />
-
-        <!-- Définir Login comme activité principale -->
+        <!-- SplashScreen : activité de lancement -->
         <activity
-            android:name=".Login"
-            android:exported="true">
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Après SplashScreen, on va vers RoleSelectionActivity -->
+        <activity android:name=".RoleSelectionActivity" android:exported="true" />
+
+        <!-- Login, pour l'étudiant ou le professeur -->
+        <activity android:name=".Login" android:exported="true" />
+
+        <!-- Page d’accueil pour les profs -->
+        <activity android:name=".Home" android:exported="true" />
+
+        <!-- Page pour l’étudiant après sélection du groupe -->
+        <activity android:name=".HomeEtudiantActivity" android:exported="true" />
+
+        <!-- Choix du groupe pour l’étudiant -->
+        <activity android:name=".ChoixGroupeActivity" android:exported="true" />
+
         <!-- Autres activités -->
-        <activity android:name=".Home" android:exported="false" />
-        <activity android:name=".Signup" android:exported="false" />
-        <activity android:name=".Maps"
-            tools:ignore="Instantiatable,WrongManifestParent"
-            android:exported="false" />
+        <activity android:name=".Assistant_virtuel" android:exported="true" />
+        <activity android:name=".MarquerAbsencesActivity" />
+        <activity android:name=".AbsencesActivity" />
+        <activity android:name=".DocumentsActivity" />
+        <activity android:name=".EmploiDuTempsActivity" />
+        <activity android:name=".RattrapagesActivity" />
+
+        <!-- Déclaration de l'API key pour Google Maps -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA-l825z_McWfj0Pb_Jf6pmej1QOJ5sa3Q" />
+
     </application>
 
 </manifest>

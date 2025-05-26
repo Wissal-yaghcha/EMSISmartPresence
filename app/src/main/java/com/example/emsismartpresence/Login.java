@@ -5,20 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
+
     private EditText etEmail, etPassword;
     private View btnLogin;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,32 +28,20 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
-        // Initialisation des vues
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
 
-        // Connexion
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                authenticateUser();
-            }
-        });
-
-        // Redirection vers Signup
-        findViewById(R.id.goToSignup).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectToSignUp(v);
-            }
-        });
+        btnLogin.setOnClickListener(v -> authenticateUser());
     }
 
     private void authenticateUser() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+
+        Log.d("Login", "Authentification démarrée avec email: " + email);
 
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(Login.this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
@@ -60,23 +49,53 @@ public class Login extends AppCompatActivity {
         }
 
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Authentification réussie", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(Login.this, Home.class);
-                            startActivity(i);
-                            finish();
-                        } else {
-                            Toast.makeText(Login.this, "Authentification échouée", Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    Log.d("Login", "Connexion terminée, succès: " + task.isSuccessful());
+                    if (task.isSuccessful()) {
+                        String uid = mAuth.getCurrentUser().getUid();
+                        Log.d("Login", "Utilisateur connecté avec uid: " + uid);
+                        checkUserRole(uid);
+                    } else {
+                        Toast.makeText(Login.this, "Authentification échouée", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    public void redirectToSignUp(View view) {
-        Intent intent = new Intent(Login.this, Signup.class);
-        startActivity(intent);
+
+    private void checkUserRole(String uid) {
+        Log.d("Login", "Vérification du rôle pour l'UID: " + uid);
+
+        db.collection("users").document(uid).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot doc = task.getResult();
+                        if (doc != null && doc.exists()) {
+                            String role = doc.getString("role");
+                            Log.d("Login", "Rôle récupéré: " + role);
+                            if ("prof".equalsIgnoreCase(role)) {
+                                Log.d("Login", "Utilisateur est un professeur");
+                                // Redirection vers Home (Prof)
+                                Intent intent = new Intent(Login.this, Home.class);
+                                intent.putExtra("isProf", true); // Ajout de l'extra pour Home
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Log.d("Login", "Utilisateur est un étudiant");
+                                // Redirection vers ChoixGroupeActivity (Étudiant)
+                                Intent intent = new Intent(Login.this, ChoixGroupeActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        } else {
+                            Log.d("Login", "Document utilisateur non trouvé");
+                            Intent intent = new Intent(Login.this, ChoixGroupeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    } else {
+                        Log.e("Login", "Erreur récupération rôle", task.getException());
+                    }
+                });
     }
+
 }

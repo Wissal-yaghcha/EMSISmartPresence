@@ -1,7 +1,9 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
-    id("com.google.gms.google-services")
-    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) // Firebase Plugin
+    id("com.google.gms.google-services") // Firebase plugin
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) // Google Maps plugin
 }
 
 android {
@@ -34,23 +36,36 @@ android {
 }
 
 dependencies {
+    // Android libraries
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.google.firebase.auth)
+
+    // Firebase dependencies
+    implementation(platform(libs.firebase.bom)) // Firebase BOM for version management
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+
+    // Google Play Services (for maps)
+    implementation("com.google.android.gms:play-services-maps:19.2.0")
+
+    // OkHttp for HTTP requests
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+
+    // JSON handling
+    implementation("org.json:json:20230227")
+
+    implementation ("com.google.android.gms:play-services-location:21.1.0")
+
+    implementation ("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation ("com.google.maps.android:android-maps-utils:2.2.5")
+    implementation ("com.google.android.libraries.places:places:3.2.0")
+    implementation(libs.gridlayout)
+
+
+    // Testing libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-    // Firebase dependencies
-    implementation(platform(libs.firebase.bom)) // Firebase BOM (Bill of Materials)
-
-    // Firebase Authentication
-    implementation(libs.firebase.auth)
-
-    // Firebase Firestore (optional, if you're using it)
-    implementation(libs.firebase.firestore)
-    implementation("com.google.android.gms:play-services-maps:19.2.0")
-    // Add other Firebase products if needed
 }
