@@ -1,25 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp"
-    android:background="#FFFFFF">
+    android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_emploi"
-        android:layout_width="200dp"
+    <!-- Affichage du groupe sélectionné -->
+    <TextView
+        android:id="@+id/tv_group_info"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Emploi du temps"
+        android:text="Groupe sélectionné : "
         android:textSize="18sp"
-        android:layout_marginBottom="24dp"/>
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_rattrapages"
-        android:layout_width="200dp"
+    <!-- Flèche de retour -->
+    <ImageView
+        android:id="@+id/ic_arrow_back"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rattrapages à venir"
-        android:textSize="18sp"/>
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Retour"
+        android:layout_marginTop="16dp" />
 
+    <!-- Cartes de fonctionnalités -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_emploi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Emploi du temps"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_rattrapages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rattrapages"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_change_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Changer de profil"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

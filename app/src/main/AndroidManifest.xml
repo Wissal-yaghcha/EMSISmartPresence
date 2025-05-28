@@ -15,7 +15,7 @@
         android:label="Emsi Smart Presence"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EmsiSmartPresence"
+        android:theme="@style/Theme.MaterialComponents.DayNight"
         tools:targetApi="31">
 
         <!-- SplashScreen : activité de lancement -->
@@ -51,6 +51,9 @@
         <activity android:name=".DocumentsActivity" />
         <activity android:name=".EmploiDuTempsActivity" />
         <activity android:name=".RattrapagesActivity" />
+
+        <activity android:name=".SettingsActivity" android:exported="true" />
+
 
         <!-- Déclaration de l'API key pour Google Maps -->
         <meta-data

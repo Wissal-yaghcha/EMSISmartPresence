@@ -2,36 +2,37 @@ package com.example.emsismartpresence;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RoleSelectionActivity extends AppCompatActivity {
 
-    private Button btnProf;
-    private Button btnEtudiant;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_role_selection);
 
-        btnProf = findViewById(R.id.btn_prof);
-        btnEtudiant = findViewById(R.id.btn_etudiant);
+        Button btnProfessor = findViewById(R.id.btn_professor);
+        Button btnStudent = findViewById(R.id.btn_student);
 
-        // Si l'utilisateur choisit "Professeur", redirection vers login
-        btnProf.setOnClickListener(v -> {
-            Intent intent = new Intent(RoleSelectionActivity.this, Login.class);
-            intent.putExtra("role", "prof");
-            startActivity(intent);
-            finish();
+        btnProfessor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirection vers l'interface professeur (login)
+                Intent intent = new Intent(RoleSelectionActivity.this, Login.class);
+                startActivity(intent);
+            }
         });
 
-        // Si l'utilisateur choisit "Étudiant", redirection vers ChoixGroupeActivity
-        btnEtudiant.setOnClickListener(v -> {
-            Intent intent = new Intent(RoleSelectionActivity.this, ChoixGroupeActivity.class);
-            startActivity(intent);
-            finish();
+        btnStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirection vers l'interface étudiant (sélection de groupe)
+                Intent intent = new Intent(RoleSelectionActivity.this, ChoixGroupeActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }
